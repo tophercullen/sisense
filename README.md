@@ -19,7 +19,6 @@ Requires Windows Server 2008 or 2012 for the main application and Linux for mong
  * 'haproxy'
  * 'chocolatey'
  * 'windows_firewall'
- * 'x509'
 
 
 Attributes

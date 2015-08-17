@@ -16,13 +16,19 @@ for member in  members do
 end
 
 
-x509_certificate node['haproxy']['cert'] do 
-  key node['haproxy']['cert']
-  certificate node['haproxy']['cert']
-  cn "Tester"
-  bits 4096
-  days 365
-  not_if do ::File.exists?(node['haproxy']['cert']) end
+if not  ::File.exists?(node['haproxy']['cert'] )
+  bash "gen temp ssl certs for testing" do
+    code <<-EOS
+        openssl genrsa -out /tmp/tmp.key 4096
+        openssl req -subj "/C=US/ST=UT/L=SLC/O=Example/OU=IT/CN=Tester/emailAddress=noreply@example.com" -new -key /tmp/tmp.key -out /tmp/tmp.csr
+        openssl x509 -req -days 365 -in /tmp/tmp.csr -signkey /tmp/tmp.key -out /tmp/tmp.crt
+        cat /tmp/tmp.{key,crt,csr} >> #{node['haproxy']['cert']}
+        rm -f /tmp/tmp.{csr,key,crt}
+       EOS
+    if not ::File.exists?(node['haproxy']['cert'])
+     puts node['haproxy']['cert']
+    end
+  end
 end
 
 template "#{node['haproxy']['conf_dir']}/haproxy.cfg" do
