@@ -1,5 +1,22 @@
 #setups and installs the "healthcheck" for sisense
-include_recipe 'jb-iis::python'
+
+#install python
+include_recipe 'chocolatey'
+
+#Add these paths before hand so they can be used by the shell
+#If they are not set, you will need to reload the shell
+#and rerun chef many times
+windows_path node['python']['home'] do
+  action :add
+end
+windows_path node['python']['scripts'] do
+  action :add
+end
+
+chocolatey 'python2'
+chocolatey 'easy.install'
+chocolatey 'pip'
+
 
 #Setup the healthcheck service
 chocolatey 'nssm'

@@ -1,4 +1,4 @@
-include_recipe "jb-haproxy::default"
+include_recipe "haproxy"
 include_recipe "x509"
 
 service = 'sisense'

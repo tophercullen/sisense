@@ -10,7 +10,6 @@
 include_recipe "iis"
 include_recipe "iis::remove_default_site"
 include_recipe "iis::mod_aspnet45"
-include_recipe "jb-iis"
 include_recipe "vcruntime::vc12"
 
 powershell_script "restart-iis" do
