@@ -1,0 +1,102 @@
+cookie:
+  name: '.prism'
+  secret: 'keyboard cat'
+  rKey: zHKsaFy7m8xyi20T
+
+active_directory:
+  secret : 'bsai6vca8nei5l5oevce0yeobudgbi5l0a6d4ded'
+
+super_user_api:
+  secret : 'baar8acd8iei5l5oevce0yeobudlkjvxew344dwe'
+
+jwtCookie:
+  name: '.prism_shared'
+
+db_server:
+  host: <%= @db_host %>
+  port: <%= @db_port %>
+  process: \mongodb\mongod.exe
+  dbpath:  '/sisense/PrismWeb/DB'
+  ttlNotFound: 604800
+
+db_prism:
+  database: prismWebDB
+  user:
+  password:
+
+db_logs:
+  database: monitor
+  user:
+  password:
+  maxSize: 1000000
+  maxDaysTime: 30
+
+db_geo:
+    database: geo
+    user:
+    password:
+
+db_prism_config:
+    database: prismConfig
+    user:
+    password:
+
+oxygen:
+  port_oxygen: 31112
+
+db_tracking:
+  host:   <%= @db_host %>
+  port:   <%= @db_port %>
+  database: tracking
+  user:
+  password:
+
+webServer:
+  ver: '5.0'
+  port:     3000
+  iisPort: 443
+  virtualDir:  '/api'
+  apiVersion: 'Beta'
+  oldApi: '/apiv1'
+  secure: true
+  reportPath: \sisense\reports\
+  jobEnable: true
+  trackEnable: true
+  dashboardPath: 'https://sisense.internal.jamberry.com/app/main#/dashboards/'
+  enableSSl: true
+  alias: sisense.internal.jamberry.com
+
+
+email:
+  enabled: true
+  senderEmail: 'sisense-admin@sisense.com'
+  senderName: 'sisense-admin'
+  api_root: 'https://mandrillapp.com/api/1.0/'
+  api_root_static: 'http://static.mandrillapp.com/api/1.0'
+  api_key: '5HYOzAklNGyob2IXj39DmA'
+
+geoServer:
+  host_bidgata: 'ec2-54-198-125-102.compute-1.amazonaws.com'
+  host_small: 'ec2-54-80-171-105.compute-1.amazonaws.com'
+  host: 'geo.sisense.com'
+  port: 8080
+  apiParams: '/fulltext/fulltextsearch?allwordsrequired=on&q=%s&format=json'
+
+
+geoTilesServer:
+  api: '{s}.tiles.mapbox.com/v3/sangil.hgfgili9/{z}/{x}/{y}.png'
+  password: 'redmond'
+
+geocoding:
+  host: "gis.sisense.com"
+  port: 80
+  method: "POST"
+  retries: 1
+
+exporting:
+  host: "localhost"
+  port: "default"
+  protocol: "http"
+  DPI: 120
+  store_days: 2
+

@@ -1,0 +1,74 @@
+#!/usr/bin/python
+# install the following on rhel
+# yum install python-setuptools -y
+# easy_install pip
+# pip install Flask Flask-Cache
+from flask import abort, Flask
+from flask.ext.cache import Cache
+import sys
+import time
+import datetime
+import jwt
+import uuid
+import json
+import urllib2
+import urllib
+
+app = Flask(__name__)
+cache = Cache(app,config={'CACHE_TYPE': 'simple'})
+
+
+shared_key = "<%= node['sisense']['healthcheck']['api']['key'] %>"
+url='<%= node['sisense']['healthcheck']['api']['schema'] %>://<%= node['sisense']['healthcheck']['api']['endpoint']%>:<%= node['sisense']['healthcheck']['api']['port'] %><%= node['sisense']['healthcheck']['api']['uri'] %>'
+user = "<%= node['sisense']['healthcheck']['api']['user'] %>"
+password = "<%= node['sisense']['healthcheck']['api']['password'] %>"
+cubes = <%= node['sisense']['healthcheck']['cubes'] %>
+allowed_cube_states = [1,2]
+
+def check_cubes(cube_data):
+    """Iterates over cube data and verifys the status of the cubes. 
+       Returns true if all cubes are available and false if any are unavailable or missing"""
+    #magic mutation
+    data = {title: status for status, title in [x.values() for x in cube_data]}
+    for cube in cubes:
+        if data.get(cube, -2) not in allowed_cube_states:
+            return False
+    return True
+
+@cache.cached(timeout=5)
+def get_status():
+    #put payload and dep here so iat gets updated for each request
+    #set expire time to +1 day just in case 
+    payload = {
+        "iat": int(time.time()),
+        "email": user,
+        "password": password,
+        "exp" : int(time.time()) + 86400
+    }
+    jwt_string = jwt.encode(payload, shared_key)
+    encoded_jwt = urllib.quote_plus(jwt_string)
+    
+    try:
+        req = urllib2.Request(url)
+        req.add_header('x-api-key', encoded_jwt)
+        connection = urllib2.urlopen(req, timeout=5)
+        code = connection.getcode()
+        data = json.load(connection)
+        if code != 200 :
+            return  """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>503 Servuce Unavailable</title>\n<h1>Service Unavailable</h1>\n<p>Sisense is unavailable. API returned: %s.  Last checked: %s\n</p>""" % (code, datetime.datetime.now()), 503
+        if code == 200:
+            if not check_cubes(data):
+                return  """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>503 Service Unavailable</title>\n<h1>Service Unavailable</h1>\n<p>Sisense is unavailable. Cube status check %s against %s failed. Last checked: %s\n</p>""" % (cubes, data, datetime.datetime.now()), 503
+            return  """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>200 OK</title>\n<h1>OK</h1>\n<p>Sisense is available. Last checked: %s\n</p>""" % (datetime.datetime.now())
+    except:
+        return "Unhandled exception checking Sisense status. Error: %s. Last checked: %s\n" % (sys.exc_info()[0], datetime.datetime.now()), 500
+    #shouldn't ever get to this point
+    return "Well, this is awkward and bad. No clue what happend. You shouldn't be able to get this message.", 500
+
+@app.route('/', methods=['GET'])
+def index():
+    return get_status()
+
+if __name__ == '__main__':
+    app.run(host='<%= node[:sisense][:healthcheck][:listen][:address] %>', port=<%= node[:sisense][:healthcheck][:listen][:port] %>)
+

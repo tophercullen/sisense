@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<databaseConfiguration DataProvidersName="MongoProvider">
+  <connectionStrings>
+    <add name="Mongo" connectionString="mongodb://<%= @db_host %>/?safe=true"/>
+    <add name="PrismEntitiesMSSQL2008R2" connectionString="metadata=|DataDirectory|\MSSQL\2008R2\Model.ssdl| |DataDirectory|\MSSQL\2008R2\Model.csdl||DataDirectory|\MSSQL\2008R2\Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=localhost;Initial Catalog=Prism;Integrated Security=True;MultipleActiveResultSets=True&quot;"/>
+    <add name="PrismEntitiesMSSQL2008" connectionString="metadata=|DataDirectory|\MSSQL\2008\Model.ssdl| |DataDirectory|\MSSQL\2008\Model.csdl||DataDirectory|\MSSQL\2008\Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=localhost;Initial Catalog=Prism;Integrated Security=True;MultipleActiveResultSets=True&quot;"/>
+    <add name="PrismEntitiesMSSQL2005" connectionString="metadata=|DataDirectory|\MSSQL\2005\Model.ssdl| |DataDirectory|\MSSQL\2005\Model.csdl||DataDirectory|\MSSQL\2005\Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=localhost;Initial Catalog=Prism;Integrated Security=True;MultipleActiveResultSets=True&quot;"/>
+    <add name="PrismEntitiesCompact" connectionString="metadata=|DataDirectory|\MSSQL\Compact\Model.ssdl| |DataDirectory|\MSSQL\Compact\Model.csdl||DataDirectory|\MSSQL\Compact\Model.msl;provider=System.Data.SqlServerCe.4.0;;provider connection string=&quot;Data Source=|DataDirectory|\MSSQL\Compact\Prism.sdf;&quot;"/>
+  <add name="MongoProvider" connectionString="mongodb://<%= @db_host %>:<%= @db_port %>/?safe=true"/></connectionStrings>
+</databaseConfiguration>
+

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureTree xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.org/FeatureTreeSchema.xsd">
+  <InstallationTypes>
+    <InstallationType>
+      <Name>Prism Client</Name>
+      <Desc>Prism Desktop application</Desc>
+      <Selected>true</Selected>
+      <Groups>
+        <Group>
+          <Name>Prism Client server group</Name>
+          <Desc>dasdasdasdasdasd</Desc>
+          <Features>
+            <Feature>
+              <Id>PrismBIStudio_Feature</Id>
+              <Name>Prism BI studio</Name>
+              <Selected>true</Selected>
+              <Manual>false</Manual>
+              <Selector>CheckBox</Selector>
+              <Tests />
+            </Feature>
+            <Feature>
+              <Id>PrismServerConsole_Feature</Id>
+              <Name>Prism Server Console</Name>
+              <Selected>true</Selected>
+              <Manual>false</Manual>
+              <Selector>CheckBox</Selector>
+              <Tests />
+            </Feature>
+            <Feature>
+              <Id>Prism_ElastiCubeManager_Feature</Id>
+              <Name>Elastic Cube Manager</Name>
+              <Selected>true</Selected>
+              <Manual>false</Manual>
+              <Selector>CheckBox</Selector>
+              <Tests />
+            </Feature>
+          </Features>
+        </Group>
+      </Groups>
+      <IsChecked>true</IsChecked>
+    </InstallationType>
+    <InstallationType>
+      <Name>Prism ECS </Name>
+      <Desc>dasdasdasdasdasd</Desc>
+      <Selected>true</Selected>
+      <Groups>
+        <Group>
+          <Name>Prism Data server group</Name>
+          <Desc>dasdasdasdasdasd</Desc>
+          <Features>
+            <Feature>
+              <Id>PrismServerlocalFeature</Id>
+              <Name>Prism server Local</Name>
+              <Selected>false</Selected>
+              <Manual>false</Manual>
+              <Selector>Radio</Selector>
+              <GroupName>AbacusGroup</GroupName>
+              <Tests />
+            </Feature>
+            <Feature>
+              <Id>PrismServerServiceFeature</Id>
+              <Name>Prism server Service</Name>
+              <Selected>true</Selected>
+              <Manual>false</Manual>
+              <Selector>Radio</Selector>
+              <GroupName>AbacusGroup</GroupName>
+              <Tests />
+            </Feature>
+            <Feature>
+              <Id>PrismServerBDFeature</Id>
+              <Name>Prism Server Big Data</Name>
+              <Selected>false</Selected>
+              <Manual>false</Manual>
+              <Selector>CheckBox</Selector>
+              <GroupName>AbacusGroup</GroupName>
+              <Tests />
+            </Feature>
+          </Features>
+        </Group>
+        <Group>
+          <Name>Prism Client server group</Name>
+          <Desc>Prism Client server group</Desc>
+          <Features>
+            <Feature>
+              <Id>PrismServerConsole_Feature</Id>
+              <Name>Prism Server Console</Name>
+              <Selected>true</Selected>
+              <Manual>false</Manual>
+              <Selector>CheckBox</Selector>
+              <Tests />
+            </Feature>
+          </Features>
+        </Group>
+      </Groups>
+      <IsChecked>true</IsChecked>
+    </InstallationType>
+    <InstallationType>
+      <Name>Prism Web</Name>
+      <Desc>Prism Web</Desc>
+      <Selected>true</Selected>
+      <Groups>
+        <Group>
+          <Name>Prism Web IIS configuration</Name>
+          <Desc>Prism Web IIS</Desc>
+          <Features>
+            <Feature>
+              <Id>IIsFeature</Id>
+              <Name>IIs configuratio</Name>
+              <Selected>true</Selected>
+              <Manual>false</Manual>
+              <Selector>Radio</Selector>
+              <GroupName>IISGroup</GroupName>
+              <Tests>
+                <Test>
+                  <Title>Testing Web Components</Title>
+                  <ClassName>Microsoft.Tools.WindowsInstallerXml.UX.TestPrismWebConnection</ClassName>
+                </Test>
+              </Tests>
+            </Feature>
+            <Feature>
+              <Id>IIsExpressFeature</Id>
+              <Name>IIs Express</Name>
+              <Selected>false</Selected>
+              <Manual>false</Manual>
+              <Selector>Radio</Selector>
+              <GroupName>IISGroup</GroupName>
+              <Tests>
+                <Test>
+                  <Title>Testing Web Express connectivity</Title>
+                  <ClassName>Microsoft.Tools.WindowsInstallerXml.UX.TestPrismWebExpressConnection</ClassName>
+                </Test>
+              </Tests>
+            </Feature>
+          </Features>
+        </Group>
+        <Group>
+          <Name>Prism Web DB</Name>
+          <Desc>dasdasdasdasdasd</Desc>
+          <Features>
+            <Feature>
+              <Id>SQLcompact</Id>
+              <Name>SQL compact</Name>
+              <Selected>true</Selected>
+              <Manual>false</Manual>
+              <Selector>Radio</Selector>
+              <GroupName>PrismWebDBGroup</GroupName>
+              <Tests />
+            </Feature>
+            <Feature>
+              <Id>SQLServerExpress</Id>
+              <Name>SQL Express</Name>
+              <Selected>false</Selected>
+              <Manual>false</Manual>
+              <Selector>Radio</Selector>
+              <GroupName>PrismWebDBGroup</GroupName>
+              <Tests />
+            </Feature>
+          </Features>
+        </Group>
+      </Groups>
+      <IsChecked>true</IsChecked>
+    </InstallationType>
+  </InstallationTypes>
+</FeatureTree>

@@ -1,0 +1,18 @@
+name             'sisense'
+maintainer       'Topher Cullen'
+maintainer_email 'topher.cullen@jamberry.com'
+license          'All rights reserved'
+description      'Installs/Configures sisense'
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version          '0.1.0'
+
+depends 'mongodb'
+depends 'iis'
+depends 'windows'
+depends 'vcruntime'
+depends 'partial_search'
+depends 'jb-iis'
+depends 'chocolatey'
+depends 'windows_firewall'
+depends 'jb-haproxy'
+depends 'x509'
