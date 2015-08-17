@@ -9,7 +9,7 @@ Default credentials will need to be updated to succesfully register a new applic
 
 Requirements
 ------------
-Requires Windows Server 2008 or 2012 and the following cookbooks
+Requires Windows Server 2008 or 2012 for the main application and Linux for mongo and Haproxy. The following cookcooks are required.
 
  * 'mongodb'
  * 'iis'
@@ -32,11 +32,11 @@ Default version will usually be ok. User and password will need to be updated
  * `node['sisense']['install']['password']`
 
 ### DB
-Purposly set to nil as the Recipe will search the environment for the role, check the value of the DB attribute and, if its nil will default to localhost
+Purposly set to nil as the recipe will search the environment for the role, check the value of the DB attribute and, if its nil will default to localhost
  * `node['sisense']['config']['frontend']['db']['host']`
 
 ### IIS
-IIS port bindings. You will need to setup a cert before SSL will work. Its a little beyond the scope of this cookbook. See the windows_certificate_binding and windows_certificate resources in the windows cookbook.
+IIS port bindings. You will need to setup a cert before SSL will work. This is beyond the scope of this cookbook. See the windows_certificate_binding and windows_certificate resources in the windows cookbook.
  * `node['sisense']['iis']['site']['bindings']`
 
 ### Healthcheck
@@ -47,7 +47,6 @@ Usage
 -----
 #### SiSense
 Just include `sisense` in your node's `run_list`:
-
 
 ```json
 {
