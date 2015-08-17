@@ -32,7 +32,7 @@ Default version will usually be ok. User and password will need to be updated
  * `node['sisense']['install']['password']`
 
 ### DB
-Purposly set to nil as the recipe will search the environment for the role, check the value of the DB attribute and, if its nil will default to localhost
+Purposly set to nil as the recipe will search the environment for the role, check the value of the DB attribute and, if its nil, will default to localhost
  * `node['sisense']['config']['frontend']['db']['host']`
 
 ### IIS
