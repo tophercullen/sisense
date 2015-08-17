@@ -11,15 +11,15 @@ Requirements
 ------------
 Requires Windows Server 2008 or 2012 and the following cookbooks
 
-'mongodb'
-'iis'
-'windows'
-'vcruntime'
-'partial_search'
-'haproxy'
-'chocolatey'
-'windows_firewall'
-'x509'
+ * 'mongodb'
+ * 'iis'
+ * 'windows'
+ * 'vcruntime'
+ * 'partial_search'
+ * 'haproxy'
+ * 'chocolatey'
+ * 'windows_firewall'
+ * 'x509'
 
 
 Attributes
@@ -38,6 +38,10 @@ Purposly set to nil as the Recipe will search the environment for the role, chec
 ### IIS
 IIS port bindings. You will need to setup a cert before SSL will work. Its a little beyond the scope of this cookbook. See the windows_certificate_binding and windows_certificate resources in the windows cookbook.
  * `node['sisense']['iis']['site']['bindings']`
+
+### Healthcheck
+If using the healthcheck webapp, set the api key attribute. Note: the sisense api requires a user, password AND an api key to work. 
+ * `node['sisense']['healthcheck']['api']['key']`
 
 Usage
 -----
