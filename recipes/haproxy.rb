@@ -22,6 +22,7 @@ x509_certificate node['haproxy']['cert'] do
   cn "Tester"
   bits 4096
   days 365
+  not_if do ::File.exists?(node['haproxy']['cert']) end
 end
 
 template "#{node['haproxy']['conf_dir']}/haproxy.cfg" do
