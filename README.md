@@ -26,7 +26,7 @@ Attributes
 ----------
 
 #### Install
-Default version usually be ok. User and password will need to be updated
+Default version will usually be ok. User and password will need to be updated
  * `node['sisense']['install']['version']`
  * `node['sisense']['install']['user']`
  * `node['sisense']['install']['password']`
@@ -34,6 +34,10 @@ Default version usually be ok. User and password will need to be updated
 ### DB
 Purposly set to nil as the Recipe will search the environment for the role, check the value of the DB attribute and, if its nil will default to localhost
  * `node['sisense']['config']['frontend']['db']['host']`
+
+### IIS
+IIS port bindings. You will need to setup a cert before SSL will work. Its a little beyond the scope of this cookbook. See the windows_certificate_binding and windows_certificate resources in the windows cookbook.
+ * `node['sisense']['iis']['site']['bindings']`
 
 Usage
 -----
